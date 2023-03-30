@@ -1,9 +1,7 @@
 import './App.css';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
   Routes
 } from "react-router-dom";
 import Home from './Pages/Home/Home/Home'; 
