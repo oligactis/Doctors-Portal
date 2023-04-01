@@ -1,17 +1,22 @@
 import React from 'react';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-// import { DatePicker } from "@mui/x-date-pickers-pro/DatePicker";
-// import { DatePicker } from '@mui/x-date-picker'
-// import { DatePicker } from '@mui/x-date-picker/DatePicker'
-// import { DatePicker } from '@mui/x-date-picker-pro'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
-const Calender = () => {
+const Calender = ({date, setDate}) => {
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <StaticDatePicker orientation="landscape" />
-      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DateCalendar 
+      // const date = dayjs('2023-04-01');
+      // const startOfMonth = date.startOf('month');
+
+          value={date}
+          onChange={(newValue) => {
+            setDate(newValue);
+          }}
+      />
+    </LocalizationProvider>    
     );
 };
 
