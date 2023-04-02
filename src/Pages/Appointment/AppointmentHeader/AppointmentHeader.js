@@ -3,7 +3,6 @@ import { Container } from '@mui/system';
 import React from 'react';
 import chair from '../../../images/chair.png'
 import Calender from '../../Shared/Calender/Calender';
-import { setDate } from 'date-fns';
 
 
 const AppointmentHeader = ({date, setDate}) => {

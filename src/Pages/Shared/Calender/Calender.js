@@ -1,20 +1,15 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+// import dayjs from 'dayjs';
 
 const Calender = ({date, setDate}) => {
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar 
-      // const date = dayjs('2023-04-01');
-      // const startOfMonth = date.startOf('month');
-
-          value={date}
-          onChange={(newValue) => {
-            setDate(newValue);
-          }}
+          // defaultValue={dayjs('lll')}
+          date={date} onChange={(newDate) => setDate(newDate)}
       />
     </LocalizationProvider>    
     );
