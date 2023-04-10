@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import login from '../../../images/login.png'
 import { NavLink } from 'react-router-dom';
 
-
 const Login = () => {
     const [loginData, setLoginData] = useState({})
     const handleOnChange = e =>{
