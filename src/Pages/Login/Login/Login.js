@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({})
-    const [user, loginUser, isLoading, authError] = useAuth[' '];
+    const {user, loginUser, isLoading, authError} = useAuth();
     //  
     const handleOnChange = e =>{
         const field =e.target.name;
