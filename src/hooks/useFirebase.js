@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Pages/Login/Login/Firebase/Firebase.init";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // initilize firebase app
@@ -11,18 +11,22 @@ const useFirebase = () => {
   const [authError, setAuthError] = useState('');
 
   const auth = getAuth();
+  // v- 72.1 -- 
+  const googleProvider = new GoogleAuthProvider();
+  // v- 72.1 -- 
+
+
+  // access appoint page after login ----
   const location = useLocation();
   const history = useNavigate();
 
   const redirect = () => {
     const { state } = location;
     (state?.from) ? history(state?.from?.pathname) : history('/')
-}
+  }
+  // -----------
 
-
-
-
-  const registerUser = async (email, password) => {
+  const registerUser = async (email, password, name, history) => { // v 72.2 history, name
     setIsLoading(true);
     console.log(email, password)
     createUserWithEmailAndPassword(auth, email, password)
@@ -30,6 +34,17 @@ const useFirebase = () => {
         // const user = userCredential.user
         // setUser(userCredential.user)
         setAuthError('');
+        // v 72.2
+        const newUser = { email, displayName: name }
+        setUser(newUser);
+        // send name to firebase after creation 
+        updateProfile(auth.currentUser, {
+          displayName: name
+        }).then(() => {
+        }).catch((error) => {
+        });
+        history.replace('/')
+        // v 72.2
       })
       .catch((error) => {
         // const errorCode = error.code;
@@ -38,14 +53,13 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   }
-//----
+
   const loginUser = (email, password) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // const user = userCredential.user;---------
+        // const user = userCredential.user;
         redirect();
-        //------
         setAuthError('');
       })
       .catch((error) => {
@@ -55,6 +69,21 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   }
+
+  // video 72.1 ----
+  const singInWithGoogle = () => {
+    setIsLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        redirect();
+        setAuthError('');
+      }).catch((error) => {
+        setAuthError(error.message);
+      }).finally(() => setIsLoading(false));
+  }
+
+  // video 72.1 -----
 
   // Observe User 
   useEffect(() => {
@@ -76,7 +105,7 @@ const useFirebase = () => {
     }).catch((error) => {
       // An error happened.
     })
-    .finally(() => setIsLoading(false));
+      .finally(() => setIsLoading(false));
   }
 
   return {
@@ -85,7 +114,9 @@ const useFirebase = () => {
     authError,
     registerUser,
     loginUser,
+    singInWithGoogle,
     logOut,
+    redirect
   }
 }
 

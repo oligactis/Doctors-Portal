@@ -4,15 +4,15 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 // import dayjs from 'dayjs';
 
-const Calender = ({date, setDate}) => {
-    return (
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar 
-          // defaultValue={dayjs('lll')}
-          date={date} onChange={(newDate) => setDate(newDate)}
+const Calender = ({ date, setDate }) => {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DateCalendar
+        // defaultValue={dayjs('lll')}
+        date={date} onChange={(newDate) => setDate(newDate)}
       />
-    </LocalizationProvider>    
-    );
+    </LocalizationProvider>
+  );
 };
 
 export default Calender;
