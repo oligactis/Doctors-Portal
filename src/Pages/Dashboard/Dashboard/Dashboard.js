@@ -16,26 +16,53 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button, Grid } from '@mui/material';
-import Calender from '../../Shared/Calender/Calender';
-import Appointments from '../Appointments/Appointments';
-import { Link } from 'react-router-dom';
+import { Button } from '@mui/material'; //, Grid 
+//73.4
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  useParams,
+  Routes,
+  Outlet,
+  useResolvedPath,
+  useLocation
+} from "react-router-dom";
+import DashbordHome from '../DashbordHome/DashbordHome';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddDoctor from '../AddDoctor/AddDoctor';
+import useAuth from '../../../hooks/useAuth';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+
+// import Calender from '../../Shared/Calender/Calender';
+// import Appointments from '../Appointments/Appointments';
+// import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [date, setDate] = React.useState(new Date())
+  // let { path, url } = useResolvedPath().pathname; //73.4
+  const { pathname: path } = useLocation();
+  console.log(path);
+  const { admin } = useAuth();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  // console.log(path, url);
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
-      <Link style={{ textDecoration: 'none', color: 'white' }} to="/appointment"><Button color="inherit">Appointment</Button></Link>
+      <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/appointment"><Button color="inherit">Appointment</Button></Link>
+
+      <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${path}`}><Button color="inherit">Dashbord</Button></Link>
+      {admin && <Box>
+        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${path}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
+        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${path}/addDoctor`}><Button color="inherit">Add Doctor</Button></Link>
+      </Box>}
+
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -114,18 +141,10 @@ function Dashboard(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        <Typography paragraph>
-          <Grid container spacing={2}>
-            <Grid item xs={8} sm={5}>
-              <Calender
-                date={date}
-                setDate={setDate} />
-            </Grid>
-            <Grid item xs={4} sm={7}>
-              <Appointments date={date}></Appointments>
-            </Grid>
-          </Grid>
-        </Typography>
+
+        {/* 73.4 */}
+        <Outlet />
+
       </Box>
     </Box>
   );
