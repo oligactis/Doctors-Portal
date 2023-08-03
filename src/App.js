@@ -23,22 +23,24 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route exact path='/' element={<Home />}></Route>
-            <Route path='/home' element={<Home />}></Route>
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='/register' element={<Register />}></Route>
-            <Route exact path='/appointment' element={<PrivateRoute><Appointment></Appointment></PrivateRoute>}></Route>
-            <Route exact path='/dashboard' element={<PrivateRoute><Dashboard></Dashboard></PrivateRoute>}>
-              <Route exact path='/dashboard' element={<DashbordHome />} />
-              <Route exact path='/dashboard' element={
-                <AdminRoute path='/dashboard/addDoctor'>
-                  <AddDoctor></AddDoctor>
-                </AdminRoute>} />
-              <Route exact path='/dashboard' element={
-                <AdminRoute path='/dashboard/makeAdmin'>
-                  <MakeAdmin></MakeAdmin>
-                </AdminRoute>
-              } />
-
+            <Route path='home' element={<Home />}></Route>
+            <Route path='login' element={<Login />}></Route>
+            <Route path='register' element={<Register />}></Route>
+            <Route exact path='appointment' element={<PrivateRoute><Appointment></Appointment></PrivateRoute>}></Route>
+            <Route exact path='dashboard' element={<PrivateRoute><Dashboard></Dashboard></PrivateRoute>}>
+              <Route exact path='' element={<DashbordHome />} />
+              <Route exact path='addDoctor' element={
+                <AdminRoute>
+                  <AddDoctor />
+                </AdminRoute>}
+              />
+              <Route exact path='makeAdmin'
+                element={
+                  <AdminRoute>
+                    <MakeAdmin />
+                  </AdminRoute>
+                }
+              />
             </Route>
             {/* <PrivateRoute exact path='/appointment'>
             <Appointment></Appointment>

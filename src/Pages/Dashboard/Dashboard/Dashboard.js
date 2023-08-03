@@ -57,10 +57,10 @@ function Dashboard(props) {
       <Divider />
       <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/appointment"><Button color="inherit">Appointment</Button></Link>
 
-      <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${path}`}><Button color="inherit">Dashbord</Button></Link>
+      <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/dashboard"><Button color="inherit">Dashbord</Button></Link>
       {admin && <Box>
-        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${path}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
-        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`${path}/addDoctor`}><Button color="inherit">Add Doctor</Button></Link>
+        <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/dashboard/makeAdmin"><Button color="inherit">Make Admin</Button></Link>
+        <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/dashboard/addDoctor"><Button color="inherit">Add Doctor</Button></Link>
       </Box>}
 
       <List>
