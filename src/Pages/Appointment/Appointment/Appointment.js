@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import dayjs from 'dayjs';
 import Navigation from '../../Shared/Navigation/Navigation';
 import AppointmentHeader from '../AppointmentHeader/AppointmentHeader';
 import AvailableAppointments from '../AvailableAppointments/AvailableAppointments';

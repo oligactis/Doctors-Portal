@@ -42,11 +42,10 @@ const bookings = [
 ]
 
 const AvailableAppointments = ({ date }) => {
-    const [bookingSuccess, setBookingSuccess] = useState(false) // v 72.5
+    const [bookingSuccess, setBookingSuccess] = useState(false)
     return (
         <Container>
             <Typography variant='h5' sx={{ color: '#19D3AE', fontWeight: 600, mb: 2 }}>This is abailable appointments: {new Date(date).toDateString()}</Typography>
-            {/* v 72.5  */}
             {bookingSuccess && <Alert severity="success">Appointment Booked successful!</Alert>}
             {/* v 72.5 */}
             <Grid container spacing={2}>
