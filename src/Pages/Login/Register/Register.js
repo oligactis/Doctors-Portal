@@ -6,18 +6,14 @@ import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({})
-    // v 72.3
     const history = useNavigate();
-    // v 72.3
     const { redirect, user, registerUser, isLoading, authError } = useAuth()
-    // user,, authError 
+    // user authError 
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
-        // console.log(field,value)
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
-        // console.log(newLoginData);
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e => {
@@ -25,7 +21,7 @@ const Register = () => {
             alert("Your comfirm password not matched")
             return
         }
-        registerUser(loginData.email, loginData.password, loginData.name, history) //history, loginData.name // v 72.3
+        registerUser(loginData.email, loginData.password, loginData.name, history)
         e.preventDefault()
     }
     if (user?.email)
@@ -37,7 +33,6 @@ const Register = () => {
                     <Grid item sx={{ mt: 20 }} xs={12} md={6}>
                         <Typography variant="body1" gutterBottom>Register</Typography>
                         {!isLoading && <form onSubmit={handleLoginSubmit}>
-                            {/* v 72.1 -- */}
                             <TextField
                                 sx={{ width: '75%', m: 1 }}
                                 label="Your Name"
@@ -45,7 +40,6 @@ const Register = () => {
                                 name='name'
                                 onBlur={handleOnBlur}
                                 variant="standard" />
-                            {/* v 72.1  */}
                             <TextField
                                 sx={{ width: '75%', m: 1 }}
                                 label="Your Email"
