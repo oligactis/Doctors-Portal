@@ -71,9 +71,7 @@ const Login = () => {
                             {authError && <Alert severity="error">{authError}</Alert>}
                             <Button style={{ background: 'linear-gradient(90deg,#19D3AE,#0FCFEC)' }} sx={{ width: 300, m: 1 }} type='submit' variant='contained'>Login</Button>
                         </form>
-                        {/* v 72.1 --  */}
                         <Button onClick={handleGoogleSingIn} style={{ background: 'linear-gradient(90deg,#19D3AE,#0FCFEC)' }} variant="contained">Google sing in</Button>
-                        {/* v 72.1 --  */}
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <img style={{ width: '100%' }} src={login} alt="" />
