@@ -27,6 +27,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
   const { user } = useAuth();
   // v 72.2
   // v 72.4 
+  console.log(new Date(date).toLocaleDateString())
   const initialInfo = { patientName: user.displayName, email: user.email, phone: '' }
   const [bookingInfo, setBookingInfo] = useState(initialInfo);
   const handleOnBlur = e => {
@@ -46,7 +47,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
       ...bookingInfo,
       time,
       serviceName: name,
-      date: date.toLocaleDateString()
+      date: new Date(date).toLocaleDateString()
     }
     console.log(appointment)
     // v 72.4 

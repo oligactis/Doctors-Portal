@@ -8,7 +8,6 @@ const Register = () => {
     const [loginData, setLoginData] = useState({})
     const history = useNavigate();
     const { redirect, user, registerUser, isLoading, authError } = useAuth()
-    // user authError 
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;

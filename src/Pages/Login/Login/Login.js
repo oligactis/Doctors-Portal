@@ -30,13 +30,9 @@ const Login = () => {
         // console.log(loginUser)
         e.preventDefault()
     }
-
-    // v 72.1--- 
     const handleGoogleSingIn = () => {
         singInWithGoogle(location, history)
     }
-    // v 72.1--- 
-
     if (user?.email)
         return redirect()
     else
