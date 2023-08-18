@@ -8,26 +8,19 @@ const Login = () => {
     const [loginData, setLoginData] = useState({})
     const { redirect, user, loginUser, singInWithGoogle, isLoading, authError } = useAuth();
 
-    // v 72.1 ----
     const location = useLocation();
     const history = useNavigate()
-    // v 72.1 ----
 
     const handleOnChange = e => {
         const field = e.target.name;
         const value = e.target.value;
-        // console.log(field,value)
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
         setLoginData(newLoginData);
         console.log(loginData);
     }
     const handleLoginSubmit = e => {
-        // alert('hello')
-        //----
         loginUser(loginData.email, loginData.password);
-        //
-        // console.log(loginUser)
         e.preventDefault()
     }
     const handleGoogleSingIn = () => {
