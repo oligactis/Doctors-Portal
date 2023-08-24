@@ -15,7 +15,7 @@ const Appointments = ({ date }) => {
 
   useEffect(() => {
     // v 72.8
-    const url = `http://localhost:5000/appointments?email=${user.email}&date=${new Date(date).toLocaleDateString()}`
+    const url = `https://doctors-portal-server-oligactis.vercel.app/appointments?email=${user.email}&date=${new Date(date).toLocaleDateString()}`
     fetch(url, {
       headers: {
         'authorization': `Bearer ${token}`

@@ -53,7 +53,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
     // v 72.4 
     // send to the server
     // v 72.5 
-    fetch('http://localhost:5000/appointments', {
+    fetch('https://doctors-portal-server-oligactis.vercel.app/appointments', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
